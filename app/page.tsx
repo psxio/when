@@ -43,8 +43,8 @@ export default function Page() {
             .then((r) => (r.ok ? r.json() : null))
             .catch(() => null),
         ]);
-        setData(sRes || FALLBACK_SUMMARY);
-        setNames(nRes || FALLBACK_NAMES);
+        setData(sRes && typeof sRes === "object" && sRes.gaza ? sRes : FALLBACK_SUMMARY);
+        setNames(Array.isArray(nRes) ? nRes : FALLBACK_NAMES);
       } catch {
         setData(FALLBACK_SUMMARY);
         setNames(FALLBACK_NAMES);
@@ -147,7 +147,8 @@ export default function Page() {
 
   const g = data?.gaza || FALLBACK_SUMMARY.gaza;
   const wb = data?.west_bank || FALLBACK_SUMMARY.west_bank;
-  const childNames = (names || FALLBACK_NAMES).slice(0, 20);
+  const nameList = Array.isArray(names) ? names : FALLBACK_NAMES;
+  const childNames = nameList.slice(0, 20);
 
   return (
     <div
