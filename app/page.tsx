@@ -72,22 +72,32 @@ export default function Page() {
   // Scroll spy
   useEffect(() => {
     if (loading) return;
-    const sections = NAV_ITEMS.map((n) =>
-      document.getElementById(n.id)
-    ).filter(Boolean) as HTMLElement[];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
-          );
-        if (visible.length > 0) setActiveNav(visible[0].target.id);
-      },
-      { rootMargin: "-30% 0px -60% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    try {
+      const sections = NAV_ITEMS.map((n) =>
+        document.getElementById(n.id)
+      ).filter(Boolean) as HTMLElement[];
+      if (sections.length === 0) return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          try {
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort(
+                (a, b) =>
+                  a.boundingClientRect.top - b.boundingClientRect.top
+              );
+            if (visible.length > 0) setActiveNav(visible[0].target.id);
+          } catch {
+            // ignore scroll spy errors
+          }
+        },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+      sections.forEach((s) => observer.observe(s));
+      return () => observer.disconnect();
+    } catch {
+      // IntersectionObserver not supported or other error
+    }
   }, [loading]);
 
   const showToast = useCallback((msg: string) => {

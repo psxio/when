@@ -47,7 +47,7 @@ a { color: inherit; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px; font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  padding: 14px 28px; font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.9rem; font-weight: 600;
   text-decoration: none; border-radius: 6px; border: none; cursor: pointer;
   background: #dc2626; color: #fff;
@@ -60,7 +60,7 @@ a { color: inherit; }
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px; font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  padding: 14px 28px; font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.9rem; font-weight: 600;
   text-decoration: none; border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
@@ -96,19 +96,19 @@ a { color: inherit; }
 /* ─── STATS ──────────────────────────────────────────────────────── */
 
 .stat-num {
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700; font-size: 2rem;
   line-height: 1.1; margin-bottom: 4px;
 }
 .stat-label {
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.82rem; color: #a3a3a3;
 }
 
 /* ─── SECTION HEADINGS ───────────────────────────────────────────── */
 
 .section-label {
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.7rem; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: #dc2626; margin-bottom: 1rem;
@@ -120,14 +120,14 @@ a { color: inherit; }
 }
 
 .section-title {
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   line-height: 1.15; margin-bottom: 1rem;
 }
 
 .section-desc {
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   color: #737373; font-size: 0.95rem;
   line-height: 1.7; max-width: 560px;
 }
@@ -142,7 +142,7 @@ a { color: inherit; }
 .tab-bar button {
   background: none; border: none; color: #525252; cursor: pointer;
   padding: 10px 20px;
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.82rem; font-weight: 600;
   border-bottom: 2px solid transparent;
   transition: all 0.3s; white-space: nowrap;
@@ -163,7 +163,7 @@ a { color: inherit; }
   background: rgba(220,38,38,0.06);
   border: 1px solid rgba(220,38,38,0.15);
   border-radius: 100px;
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.85rem;
   transition: all 0.3s; cursor: default;
 }
@@ -177,7 +177,7 @@ a { color: inherit; }
 .org-tag {
   display: inline-block; padding: 3px 10px;
   border-radius: 100px;
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.65rem; font-weight: 600;
   letter-spacing: 0.05em; text-transform: uppercase;
   background: rgba(220,38,38,0.1); color: #dc2626;
@@ -186,7 +186,7 @@ a { color: inherit; }
 /* ─── REP LINKS ──────────────────────────────────────────────────── */
 
 .rep-link {
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.9rem; color: #e5e5e5;
   text-decoration: none; padding: 1rem 1.25rem;
   background: rgba(255,255,255,0.025);
@@ -206,7 +206,7 @@ a { color: inherit; }
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px; padding: 1.25rem;
-  font-family: var(--font-jetbrains), 'JetBrains Mono', 'SF Mono', monospace;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
   font-size: 0.8rem; color: #a3a3a3;
   line-height: 1.7; overflow-x: auto; white-space: pre;
 }
@@ -219,7 +219,7 @@ a { color: inherit; }
   padding: 12px 24px; background: #171717;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 8px;
-  font-family: var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
   font-size: 0.85rem; color: #e5e5e5;
   z-index: 1000;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
