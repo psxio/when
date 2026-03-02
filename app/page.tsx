@@ -33,6 +33,7 @@ export default function Page() {
 
   // Fetch data
   useEffect(() => {
+    let cancelled = false;
     async function load() {
       try {
         const [sRes, nRes] = await Promise.all([
@@ -43,15 +44,29 @@ export default function Page() {
             .then((r) => (r.ok ? r.json() : null))
             .catch(() => null),
         ]);
-        setData(sRes && typeof sRes === "object" && sRes.gaza ? sRes : FALLBACK_SUMMARY);
-        setNames(Array.isArray(nRes) ? nRes : FALLBACK_NAMES);
+        if (cancelled) return;
+        const validSummary =
+          sRes &&
+          typeof sRes === "object" &&
+          !Array.isArray(sRes) &&
+          sRes.gaza &&
+          typeof sRes.gaza === "object";
+        setData(validSummary ? sRes : FALLBACK_SUMMARY);
+        setNames(
+          Array.isArray(nRes) && nRes.length > 0 ? nRes : FALLBACK_NAMES
+        );
       } catch {
-        setData(FALLBACK_SUMMARY);
-        setNames(FALLBACK_NAMES);
+        if (!cancelled) {
+          setData(FALLBACK_SUMMARY);
+          setNames(FALLBACK_NAMES);
+        }
       }
-      setLoading(false);
+      if (!cancelled) setLoading(false);
     }
     load();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Scroll spy
@@ -85,26 +100,32 @@ export default function Page() {
 
   const copyText = useCallback(
     (text: string) => {
-      navigator.clipboard
-        ?.writeText(text)
-        .then(() => showToast("Copied to clipboard"));
+      try {
+        navigator.clipboard
+          ?.writeText(text)
+          .then(() => showToast("Copied to clipboard"))
+          .catch(() => {});
+      } catch {
+        // Clipboard API not available
+      }
     },
     [showToast]
   );
 
   const shareAction = useCallback(() => {
-    const g = data?.gaza || FALLBACK_SUMMARY.gaza;
-    const text = `${(g.killed?.total || 0).toLocaleString()} killed in Gaza. ${(g.killed?.children || 0).toLocaleString()} of them children. See the live data and take action:`;
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Remember Palestine",
-          text,
-          url: window.location.href,
-        })
-        .catch(() => {});
-    } else {
-      copyText(text + " " + window.location.href);
+    try {
+      const g = data?.gaza || FALLBACK_SUMMARY.gaza;
+      const url = typeof window !== "undefined" ? window.location.href : "";
+      const text = `${(g.killed?.total || 0).toLocaleString()} killed in Gaza. ${(g.killed?.children || 0).toLocaleString()} of them children. See the live data and take action:`;
+      if (typeof navigator !== "undefined" && navigator.share) {
+        navigator
+          .share({ title: "Remember Palestine", text, url })
+          .catch(() => {});
+      } else {
+        copyText(text + " " + url);
+      }
+    } catch {
+      // Share not available
     }
   }, [data, copyText]);
 

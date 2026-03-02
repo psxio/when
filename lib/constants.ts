@@ -140,9 +140,9 @@ export const NAV_ITEMS = [
 ];
 
 // ─── FONTS ─────────────────────────────────────────────────────────
-export const ff = "'Playfair Display', Georgia, serif";
-export const sans = "'DM Sans', 'Helvetica Neue', sans-serif";
-export const mono = "'JetBrains Mono', 'SF Mono', monospace";
+export const ff = "var(--font-playfair), 'Playfair Display', Georgia, serif";
+export const sans = "var(--font-dm-sans), 'DM Sans', 'Helvetica Neue', sans-serif";
+export const mono = "var(--font-jetbrains), 'JetBrains Mono', 'SF Mono', monospace";
 
 // ─── TYPES ─────────────────────────────────────────────────────────
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
