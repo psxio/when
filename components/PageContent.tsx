@@ -22,8 +22,8 @@ import BuildSection from "@/components/BuildSection";
 import Footer from "@/components/Footer";
 
 export default function PageContent() {
-  const [data, setData] = useState<SummaryData | null>(null);
-  const [names, setNames] = useState<NameEntry[] | null>(null);
+  const [data, setData] = useState<SummaryData>(FALLBACK_SUMMARY);
+  const [names, setNames] = useState<NameEntry[]>(FALLBACK_NAMES);
   const [loading, setLoading] = useState(true);
   const [activeNav, setActiveNav] = useState("hero");
   const [toastState, setToastState] = useState({
@@ -73,7 +73,8 @@ export default function PageContent() {
   useEffect(() => {
     if (loading) return;
     try {
-      const sections = NAV_ITEMS.map((n) =>
+      const navItems = Array.isArray(NAV_ITEMS) ? NAV_ITEMS : [];
+      const sections = navItems.map((n) =>
         document.getElementById(n.id)
       ).filter(Boolean) as HTMLElement[];
       if (sections.length === 0) return;
@@ -176,10 +177,13 @@ export default function PageContent() {
     );
   }
 
-  const g = data?.gaza || FALLBACK_SUMMARY.gaza;
-  const wb = data?.west_bank || FALLBACK_SUMMARY.west_bank;
-  const nameList = Array.isArray(names) ? names : FALLBACK_NAMES;
-  const childNames = nameList.slice(0, 20);
+  const g = (data && data.gaza) ? data.gaza : FALLBACK_SUMMARY.gaza;
+  const wb = (data && data.west_bank) ? data.west_bank : FALLBACK_SUMMARY.west_bank;
+  const safeNames: NameEntry[] = Array.isArray(names) ? names : Array.isArray(FALLBACK_NAMES) ? FALLBACK_NAMES : [];
+  const childNames: NameEntry[] = [];
+  for (let i = 0; i < 20 && i < safeNames.length; i++) {
+    childNames.push(safeNames[i]);
+  }
 
   return (
     <div
@@ -193,13 +197,13 @@ export default function PageContent() {
       <NavBar active={activeNav} />
 
       <div style={{ paddingTop: "56px" }}>
-        <Ticker data={data} />
+        <Ticker data={data || FALLBACK_SUMMARY} />
       </div>
 
       <HeroSection gaza={g} onShare={shareAction} />
       <NamesSection
         childNames={childNames}
-        knownRecords={data?.known_killed_in_gaza?.records || 18000}
+        knownRecords={typeof data?.known_killed_in_gaza?.records === "number" ? data.known_killed_in_gaza.records : 18000}
       />
       <DataSection gaza={g} westBank={wb} />
       <ActSection
