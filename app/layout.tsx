@@ -1,34 +1,14 @@
 import type { Metadata } from "next";
-import { Playfair_Display, JetBrains_Mono, Crimson_Text } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-bodoni",
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-dm-mono",
-});
-
-const crimson = Crimson_Text({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-eb-garamond",
-  weight: ["400", "600", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "WHEN — Mortality Prediction Engine",
+  title: "Remember Palestine \u2014 Live Data & Action Hub",
   description:
-    "AI-powered mortality prediction based on behavioral analysis, search pattern modeling, and life2vec deep learning embeddings.",
+    "Live, open-source data on the impact in Palestine. See the numbers, learn the names, and take action now.",
   openGraph: {
-    title: "WHEN — Mortality Prediction Engine",
+    title: "Remember Palestine \u2014 Live Data & Action Hub",
     description:
-      "Discover your predicted timeline through behavioral analysis and deep learning.",
+      "Live, open-source data on the impact in Palestine. See the numbers, learn the names, and take action now.",
     type: "website",
   },
 };
@@ -39,11 +19,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${jetbrains.variable} ${crimson.variable}`}
-    >
-      <body className="bg-void text-bone antialiased">{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body
+        style={{
+          margin: 0,
+          padding: 0,
+          backgroundColor: "#0a0a0a",
+          color: "#e5e5e5",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
