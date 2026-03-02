@@ -1,31 +1,24 @@
 {
-  "name": "when",
+  "name": "remember-palestine",
   "version": "1.0.0",
-  "description": "Mortality prediction engine powered by behavioral analysis, search pattern modeling, and life2vec deep learning",
+  "description": "Live Palestine data platform — open-source data visualization and action hub",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cross-env NODE_ENV=production next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "three": "^0.183.0"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@types/three": "^0.183.0",
-    "autoprefixer": "^10.4.19",
-    "cross-env": "^10.1.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4",
     "typescript": "^5.4.5"
   }
 }
