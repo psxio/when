@@ -60,7 +60,7 @@ export default function NavBar({ active }: { active: string }) {
           Remember Palestine
         </a>
         <div style={{ display: "flex", gap: "0.25rem", alignItems: "center" }}>
-          {NAV_ITEMS.slice(1).map((item) => (
+          {(Array.isArray(NAV_ITEMS) ? NAV_ITEMS.filter((_, i) => i > 0) : []).map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
